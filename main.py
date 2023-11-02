@@ -13,7 +13,7 @@ def encode(key, message):
         if encodLet > 25: encodLet -= 26
         encodMess += ascii_letters[encodLet]
 
-    print(encodMess)
+    print(f'Зашифроване повідомлення: {encodMess}')
     return encodMess
 
 def decode(key, encodMess):
@@ -25,26 +25,27 @@ def decode(key, encodMess):
         decodLet = ascii_letters.index(letM) - ascii_letters.index(letK)
         if decodLet < 0: decodLet += 26
         decodMess += ascii_letters[decodLet]
-
-    print(decodMess)
+      
+    print(f'Розшифроване повідомлення: {decodMess}')
 
 
 if __name__ == '__main__':
     with open('message.txt') as f:
         message = f.read()
 
-    print(message)
+    print(f'Початковий вигляд повідомлення: {message}')
 
     start = time.time()
     message = message.lower().replace(' ','').replace(',','').replace('.','').replace('-','').replace('?','').replace('?','')
 
     encodMess = encode('dog', message)
     end = time.time()
-    runtime = end - start
-    print(f"Час шифрування: {runtime} с")
+    runtime1 = end - start
 
     start = time.time()
     decode('dog', encodMess)
     end = time.time()
-    runtime = end - start
-    print(f"Час розшифрування: {runtime} с")
+    runtime2 = end - start
+
+    print(f"Час шифрування: {runtime1} с")
+    print(f"Час розшифрування: {runtime2} с")
